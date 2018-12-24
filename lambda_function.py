@@ -7,7 +7,7 @@ elastic_load_balancer = boto3.client('elb')
 route53 = boto3.client('route53')
 
 def list_resource_recordsets():
-    return (route53.list_resource_record_sets(HostedZoneId='Z2NOO43XEEAWJM'))
+    return (route53.list_resource_record_sets(HostedZoneId='<>'))
 
 def check_prod_and_region(recordset):
     return (re.search("stage", recordset) and re.search("example", recordset))
@@ -39,7 +39,7 @@ def elb_name(Aname_value):
 def send_status_to_hipchat(message,color):
     room_id_real = "7119"
     auth_token_real = ""
-    url = 'https://hipchat.bestbuy.com/v2/room/7119/notification'
+    url = ''
     headers = {
         "content-type": "application/json",
         "authorization": "Bearer %s" % auth_token_real}
@@ -54,7 +54,7 @@ def send_status_to_hipchat(message,color):
     return request.status_code
 
 def all_elbs_scaled_down():
-    send_status_to_hipchat("Browse-east - All inactive asgs scaled down","green")
+    send_status_to_hipchat("All inactive asgs scaled down","green")
 
 
 
